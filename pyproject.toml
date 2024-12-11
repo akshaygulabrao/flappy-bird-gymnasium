@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flappy-bird-gymnasium"
+version = "0.1.0"
+description = "A Flappy Bird environment using Gymnasium"
+requires-python = ">=3.12"
+dependencies = [
+    "gymnasium>=1.0.0",
+    "numpy>=2.2.0",
+    "pygame>=2.6.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["flappy_bird_gymnasium"]
