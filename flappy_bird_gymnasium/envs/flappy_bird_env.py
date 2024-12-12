@@ -188,16 +188,15 @@ class FlappyBirdEnv(gymnasium.Env):
                 * a status report (`True` if the game is over and `False`
                   otherwise)
                 * an info dictionary
-        """
-        """Given an action taken by the player, updates the game's state.
+    Given an action taken by the player, updates the game's state.
 
-        Args:
-            action (Union[FlappyBirdLogic.Actions, int]): The action taken by
-                the player.
+            Args:
+                action (Union[FlappyBirdLogic.Actions, int]): The action taken by
+                    the player.
 
-        Returns:
-            `True` if the player is alive and `False` otherwise.
-        """
+            Returns:
+                `True` if the player is alive and `False` otherwise.
+            """
         terminal = False
         reward = None
 

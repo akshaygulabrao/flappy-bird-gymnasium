@@ -25,7 +25,9 @@
 """ Tests the simple-observations version of the Flappy Bird environment with a
 random agent.
 """
+
 from typing import Union
+
 import gymnasium
 
 import flappy_bird_gymnasium #noqa: F401

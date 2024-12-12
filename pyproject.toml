@@ -9,6 +9,7 @@ description = "A Flappy Bird environment using Gymnasium"
 requires-python = ">=3.12"
 dependencies = [
     "gymnasium>=1.0.0",
+    "matplotlib>=3.9.3",
     "numpy>=2.2.0",
     "pygame>=2.6.1",
 ]

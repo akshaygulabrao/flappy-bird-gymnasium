@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pygame
 
-import flappy_bird_gymnasium
+import flappy_bird_gymnasium #noqa: F401
 
 
 def play(use_lidar=True):
@@ -77,7 +77,7 @@ def play(use_lidar=True):
         x = np.linspace((np.pi / 2), -(np.pi / 2), 180)
         y = np.array(video_buffer)
         (line,) = ax.plot(x, y[0], "-")
-        ax.set_ylim([0, 1])
+        ax.set_ylim((0, 1))
         ax.set_title("LIDAR scan", fontdict={"fontweight": "bold"})
 
         def animate(i):
