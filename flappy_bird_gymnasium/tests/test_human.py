@@ -32,7 +32,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pygame
 
-import flappy_bird_gymnasium #noqa: F401
 
 
 def play(use_lidar=True):

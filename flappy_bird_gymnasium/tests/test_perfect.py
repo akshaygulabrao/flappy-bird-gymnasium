@@ -26,16 +26,14 @@
 random agent.
 """
 
-from typing import Union
 
 import gymnasium
 
-import flappy_bird_gymnasium #noqa: F401
 
 
 def play(
     audio_on: bool = True,
-    render_mode: Union[str, None] = "human",
+    render_mode: str|None = "human",
     use_lidar: bool = False,
 ) -> None:
     """Plays a game of Flappy Bird with a random agent.
@@ -57,7 +55,7 @@ def play(
         # Processing:
         obs, _, done, _, info = env.step(action)
 
-        print(f"Obs: {obs}\n" f"Score: {info['score']}\n")
+        print(f"Obs: {obs}\n" + f"Score: {info['score']}\n")
 
         if done:
             break

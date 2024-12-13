@@ -26,12 +26,8 @@
 """
 
 import argparse
-import time
 
-import gymnasium
-import pygame
 
-import flappy_bird_gymnasium #noqa: F401
 from flappy_bird_gymnasium.tests.test_dqn import play as dqn_agent_env
 from flappy_bird_gymnasium.tests.test_human import play as human_agent_env
 from flappy_bird_gymnasium.tests.test_random import play as random_agent_env
@@ -42,7 +38,7 @@ def _get_args():
     parser = argparse.ArgumentParser(description=__doc__)
 
     # Argument for the mode of execution (human or random):
-    parser.add_argument(
+    _ = parser.add_argument(
         "--mode",
         "-m",
         type=str,
@@ -50,7 +46,7 @@ def _get_args():
         choices=["human", "random", "dqn"],
         help="The execution mode for the game.",
     )
-    parser.add_argument(
+    _ = parser.add_argument(
         "--quiet",
         action="store_true",
         help="If set, the game will be executed without rendering it.",

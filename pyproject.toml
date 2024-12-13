@@ -16,3 +16,5 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["flappy_bird_gymnasium"]
+
+[tool.pyright]

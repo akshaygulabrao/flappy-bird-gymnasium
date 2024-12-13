@@ -28,7 +28,6 @@ random agent.
 from typing import Union
 import gymnasium
 
-import flappy_bird_gymnasium #noqa: F401
 
 
 def play(
