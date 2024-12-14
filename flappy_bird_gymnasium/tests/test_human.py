@@ -2,6 +2,7 @@
 #
 # Copyright (c) 2020 Gabriel Nogueira (Talendar)
 # Copyright (c) 2023 Martin Kubovcik
+# Copyright (c) 2024 Akshay Gulabrao
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,11 +28,12 @@ human player.
 """
 
 import gymnasium
+import numpy as np
+import pandas as pd
+import flappy_bird_gymnasium
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
-import numpy as np
 import pygame
-
 
 
 def play(use_lidar=True):
@@ -41,6 +43,7 @@ def play(use_lidar=True):
 
     steps = 0
     video_buffer = []
+    states = []  # List to record the state space
 
     obs = env.reset()
     while True:
@@ -57,6 +60,7 @@ def play(use_lidar=True):
         # Processing:
         obs, _, done, _, info = env.step(action)
         video_buffer.append(obs)
+        states.append(obs.tolist())  # Record the state space
 
         steps += 1
         print(
@@ -69,6 +73,10 @@ def play(use_lidar=True):
             break
 
     env.close()
+
+    # Convert the list to a DataFrame and serialize it
+    states_df = pd.DataFrame(states)
+    states_df.to_csv("human_states.csv", index=False)  # Serialize the DataFrame
 
     if use_lidar:
         fig = plt.figure(figsize=(6, 6))
@@ -91,4 +99,4 @@ def play(use_lidar=True):
 
 
 if __name__ == "__main__":
-    play()
+    play(use_lidar=False)

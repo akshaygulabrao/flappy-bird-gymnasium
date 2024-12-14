@@ -451,6 +451,13 @@ class FlappyBirdEnv(gymnasium.Env):
                 up_collide = player_rect.colliderect(up_pipe_rect)
                 low_collide = player_rect.colliderect(low_pipe_rect)
 
+                # Output debug information about both pipes
+                if self._debug:
+                    print(f"Checking collision with pipes: "
+                          f"Upper Pipe - Position: ({up_pipe['x']:.2f}, {up_pipe['y'] + PIPE_HEIGHT:.2f}), "
+                          f"Lower Pipe - Position: ({low_pipe['x']:.2f}, {low_pipe['y']:.2f}), "
+                          f"Player - Position: ({self._player_x:.2f}, {self._player_y:.2f})")
+
                 if self._debug and self._use_lidar:
                     if up_collide:
                         print("CRASH TO UPPER PIPE")
@@ -474,7 +481,7 @@ class FlappyBirdEnv(gymnasium.Env):
 
         return False
 
-    def _get_observation_features(self) -> np.ndarray:
+    def _get_observation_features(self) -> tuple[np.ndarray[float,12],None]:
         pipes = []
         for up_pipe, low_pipe in zip(self._upper_pipes, self._lower_pipes):
             # the pipe is behind the screen?
