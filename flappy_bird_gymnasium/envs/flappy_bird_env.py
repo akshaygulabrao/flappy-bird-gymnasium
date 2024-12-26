@@ -524,7 +524,6 @@ class FlappyBirdEnv(gymnasium.Env):
                     pipes[2][2],  # the next next bottom pipe's vertical position
                     pos_y,  # player's vertical position
                     vel_y,  # player's vertical velocity
-                    rot,  # player's rotation
                 ]
             ),
             None,
