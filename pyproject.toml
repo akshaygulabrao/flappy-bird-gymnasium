@@ -12,6 +12,7 @@ dependencies = [
     "matplotlib>=3.9.3",
     "numpy>=2.2.0",
     "pygame>=2.6.1",
+    "pytest>=8.3.4",
 ]
 
 [tool.hatch.build.targets.wheel]

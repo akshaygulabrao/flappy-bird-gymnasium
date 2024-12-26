@@ -415,7 +415,7 @@ class FlappyBirdEnv(gymnasium.Env):
     def _get_random_pipe(self) -> Dict[str, int]:
         """Returns a randomly generated pipe."""
         # y of gap between upper and lower pipe
-        gapYs = [20, 30, 40, 50, 60, 70, 80, 90]
+        gapYs = [20, 50, 90]
         index = self.np_random.integers(0, len(gapYs))
         gap_y = gapYs[index]
         gap_y += int(self._ground["y"] * 0.2)
