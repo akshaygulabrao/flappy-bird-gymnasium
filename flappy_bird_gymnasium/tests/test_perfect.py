@@ -30,23 +30,36 @@ human player.
 import gymnasium
 import flappy_bird_gymnasium
 
-def agent(obs):
-    pipe = 0
-    if obs[0] < 5:
-        pipe = 1
-    x = obs[pipe *3]
-    bot = obs[pipe * 3 + 2]
-    top = obs[pipe * 3 + 1]
-    y_next = obs[-3] + obs[-2] + 24 + 1
-    if 74 < x < 88 and obs[-3] - 45 >= top:
-        return 1
-    elif y_next >= bot:
-        return 1
-    return 0
+def agent(obs,normalize=False):
+    if not normalize:
+        pipe = 0
+        if obs[0] < 5:
+            pipe = 1
+        x = obs[pipe *3]
+        bot = obs[pipe * 3 + 2]
+        top = obs[pipe * 3 + 1]
+        y_next = obs[-3] + obs[-2] + 24 + 1
+        if 74 < x < 88 and obs[-3] - 45 >= top:
+            return 1
+        elif y_next >= bot:
+            return 1
+        return 0
+    else:
+        if obs[0] < 5/288:
+            pipe = 1
+        x = obs[pipe *3]/288
+        bot = obs[pipe * 3 + 2]/512
+        top = obs[pipe * 3 + 1]/512
+        y_next = obs[-3] + obs[-2] + 24 + 1
+        if 74/288 < x < 88/288 and obs[-3] - 45 >= top:
+            return 1
+        elif y_next >= bot:
+            return 1
+        return 0
 
-def play(use_lidar=True,render_mode="human"):
+def play(use_lidar=True,render_mode="human",normalize=True):
     env = gymnasium.make(
-        "FlappyBird-v0", audio_on=True, render_mode=render_mode, use_lidar=use_lidar,normalize_obs=False,score_limit=1000
+        "FlappyBird-v0", audio_on=True, render_mode=render_mode, use_lidar=use_lidar,normalize_obs=normalize,score_limit=1000
     )
 
     steps = 0
@@ -55,7 +68,7 @@ def play(use_lidar=True,render_mode="human"):
     obs,_ = env.reset()
     while True:
         # Getting action:
-        action = agent(obs)
+        action = agent(obs,normalize=normalize)
         # Processing:
         obs, reward, done,term, info = env.step(action)
         video_buffer.append(obs)
@@ -70,4 +83,6 @@ def play(use_lidar=True,render_mode="human"):
     return info['score']
 
 if __name__ == "__main__":
-    play(use_lidar=False,render_mode="human")
+    for i in range(100):
+        score = play(use_lidar=False,render_mode=None,normalize=False)
+        print(f"Score: {score}")
